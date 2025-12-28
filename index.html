@@ -1,0 +1,573 @@
+<!--Raghad Garout-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Performance Monitoring Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <style>
+        body {
+            margin: 20;
+            padding: 10;
+            font-family: 'Lucida Console', monospace; /* Font */
+            font-size: 20px;
+            color: rgb(14, 9, 74); /* Text color for contrast */
+            overflow: auto; /* auto: allows scrolling */
+        }
+        header {
+            background-image: url('/IMGS/header bg.png'); /* Add your image path here */
+            background-size: cover; /* Cover the entire header */
+            background-position: center; /* Center the image */
+            color: white;
+            padding: 20px 20px;
+            text-align: center;
+            font-size: larger;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            margin-top: 60px; /* To avoid overlap with the header */
+        }
+        section {
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.6); /* Semi-transparent background for sections */
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .content-container {
+            display: flex; /* Use flexbox layout */
+            align-items: flex-start; /* Align items to the start */
+        }
+        .text-content {
+            flex: 1; /* Allow text to take remaining space */
+            max-width: 60%; /* Limit width of text content */
+        }
+        .image-content {
+            max-width: 30%; /* Set width for the image container */
+            margin-left: 30px; /* Space between text and image */
+        }
+        .image-content img {
+            width: 100%; /* Make image responsive */
+            height: auto; /* Maintain aspect ratio */
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #f1f1f1;
+        }
+        h1{
+            font-size: 40px;
+            margin: 0;
+        }
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+        h3 {
+            font-size: 25px;
+            margin: 5px;
+        }
+        h4 {
+            font-size: 25px;
+            margin: 20;
+        }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1; /* Send video behind other content */
+            overflow: auto;
+        }
+        img.logo {
+            width: 350px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        #myChart, #myPieChart, #myLifetimeChart, #myPurposeChart, #myOrbitChart {
+            max-width: 2000px;
+            margin: 0px auto; /* Center the charts */
+        }
+    </style>
+</head>
+<body>
+    <video id="bg_video" src="/IMGS/hero.mp4" autoplay muted loop>
+    </video>
+    <header>
+        <img src="/IMGS/logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
+        <h1>Satellite Performance Monitoring Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="#reports">Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <div class="content-container">
+                <div class="text-content">
+                    <h2>Overview of the Dashboard</h2>
+                    <p>The Satellite Performance Monitoring Dashboard is designed to simplify the tracking of satellite health by transforming overwhelming 
+                        raw data into easily understandable visualizations. This tool provides users with key insights into the performance metrics of 
+                        satellites, enabling better decision-making and proactive management.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Data Monitoring</strong>: Continuously updates key performance metrics to ensure users have the accurate information.</li>
+                        <li><strong>Visualization Tools</strong>: Utilizes charts and graphs to present complex data in a visually accessible manner.</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <img src="/IMGS/DB 1.png" alt="Satellite Dashboard" />
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+                    <h2>About</h2>
+
+                    <h3>Organization Overview</h3>
+                    <p>
+                    Data Orbit is a Saudi-based space technology start-up that specializes in satellite data analytics. Our flagship product, 
+                    the Satellite Performance Monitoring Dashboard, simplifies managing vast satellite datasets, enabling users to gain 
+                    valuable insights into satellite operations.
+                    </p>
+
+                    <h3>Organization Structure</h3>
+                    <p>
+                    Data Orbit adopts a matrix organizational structure, promoting collaboration among functional departments, including:
+                    </p>
+                    <ul>
+                    <li>Data & Analytics</li>
+                    <li>Software Development</li>
+                    <li>Operations & Space Research</li>
+                    <li>Business Development</li>
+                    <li>Human Resources</li>
+                    </ul>
+
+                    <h3>Organizational Diversity</h3>
+                    <p>
+                    We prioritize diversity in our workforce, encouraging a mix of demographics, education, and skills. This diversity 
+                    fosters innovation, enhances decision-making, and helps us meet the evolving needs of a global market.
+                    </p>
+
+                    <h3>Organizational Culture</h3>
+                    <p>
+                    Our culture is grounded in innovation, precision, and collaboration. We encourage curiosity and continuous improvement, 
+                    creating an environment where cross-functional teams can thrive and adapt to the fast-paced space industry.
+                    </p>
+
+                    <h3>Human Resource Planning</h3>
+                    <p>
+                    Data Orbit focuses on attracting talent through strategic recruitment and comprehensive training programs, ensuring 
+                    our team possesses the necessary skills to drive innovation and maintain data integrity.
+                    </p>
+
+                    <h3>Operational Plan</h3>
+                    <p>
+                    Our operations revolve around collecting, cleaning, and analyzing satellite data to deliver actionable insights 
+                    through our dashboard. We continually enhance our processes to improve efficiency and scalability, preparing 
+                    for the expanding demands of the satellite analytics market.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Section -->
+        <section id="data">
+                    <h2>Satellite Data</h2>
+
+                    <!-- Bar Chart Section -->
+        <section id="bar-chart">
+            <h3>Number of Satellites Launched by Country (2018-2023)</h3>
+            <canvas id="myChart" width="400" height="500"></canvas>
+        </section>
+
+        <!-- Pie Chart Section -->
+        <section id="pie-chart">
+            <h3>Satellite Distribution by User Type (2018-2023)</h3>
+            <canvas id="myPieChart" width="300" height="300"></canvas>
+        </section>
+
+        <!-- Expected Lifetime Bar Chart Section -->
+        <section id="lifetime-chart">
+            <h3>Expected Lifetime of Satellites (2018-2023)</h3>
+            <canvas id="myLifetimeChart" width="400" height="500"></canvas>
+        </section>
+
+        <!-- Purpose Bar Chart Section -->
+        <section id="purpose-chart">
+            <h3>Purpose of Satellites Launched (2018-2023)</h3>
+            <canvas id="myPurposeChart" width="400" height="500"></canvas>
+        </section>
+
+        <!-- Orbit Pie Chart Section -->
+        <section id="orbit-chart">
+            <h3>Class of Orbit for Satellites (2018-2023)</h3>
+            <canvas id="myOrbitChart" width="300" height="300"></canvas>
+        </section>
+
+        <!-- Report Section -->
+        <section id="reports">
+            <div class="content-container">
+                <div class="text-content">
+                    <h2>Reports</h2>
+                    <h2> </h2>
+                    <h4>From our analysis, we found that the majority of satellites in the dataset were 
+                        launched for communication and Earth observation purposes. Low Earth Orbit (LEO) 
+                        was by far the most common orbit type. We also noticed a wide range in satellite 
+                        power levels, which seems to vary depending on the mission type and orbit class. 
+                        These kinds of observations, even from static data, help show the importance of 
+                        performance monitoring and data visualization in aerospace and satellite operations.</h4>
+                </div>
+                <div class="image-content">
+                    <img src="/IMGS/rep.png" alt="About Dashboard" />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact: info@dataOrbit.com</p>
+        <p>&copy; 2025 Satellite Performance Monitoring By DATAORBIT</p>
+    </footer>
+
+   <script>
+        // Bar Chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // Specify the type of chart
+        data: {
+            labels: [
+                'USA', 
+                'United Kingdom', 
+                'China', 
+                'Russia', 
+                'Argentina', 
+                'Finland', 
+                'Japan', 
+                'Spain', 
+                'India', 
+                'Canada', 
+                'France', 
+                'Germany', 
+                'Italy', 
+                'Brazil', 
+                'South Korea', 
+                'Others'
+            ],
+            datasets: [{
+                label: 'Satellites Launched (2018-2023)',
+                data: [
+                    4661, 
+                    614, 
+                    424, 
+                    70, 
+                    39, 
+                    39, 
+                    36, 
+                    32, 
+                    31, 
+                    30, 
+                    29, 
+                    25, 
+                    20, 
+                    14, 
+                    13, 
+                    239
+                ], // Updated data
+                backgroundColor: [
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 159, 64)',
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 159, 64)',
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 159, 64)',
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 159, 64)',
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Number of Satellites Launched by Country (2018-2023)', // Chart title
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+// Pie Chart
+    const pieCtx = document.getElementById('myPieChart').getContext('2d');
+    const myPieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Commercial', 
+                'Government', 
+                'Military', 
+                'Civil'
+            ],
+            datasets: [{
+                label: 'Satellite Distribution by User Type',
+                data: [
+                    5543, 
+                    256, 
+                    209, 
+                    111
+                ],
+                backgroundColor: [
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192)',
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 206, 86)',
+                    'rgba(54, 162, 235)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Satellite Distribution by User Type (2018-2023)' // Pie chart title
+            }
+        }
+    });
+
+    // Bar Chart for Expected Lifetime of Satellites
+    const lifetimeCtx = document.getElementById('myLifetimeChart').getContext('2d');
+        const myLifetimeChart = new Chart(lifetimeCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '0.25', 
+                    '0.5', 
+                    '1', 
+                    '2', 
+                    '3', 
+                    '4', 
+                    '5', 
+                    '7', 
+                    '8', 
+                    '10', 
+                    '11', 
+                    '12', 
+                    '14', 
+                    '15', 
+                    '16', 
+                    '18', 
+                    '20', 
+                    '25', 
+                    '30'
+                ],
+                datasets: [{
+                    label: 'Number of Satellites',
+                    data: [
+                        1, 
+                        1, 
+                        15, 
+                        100, 
+                        193, 
+                        3374, 
+                        655, 
+                        26, 
+                        54, 
+                        14, 
+                        1, 
+                        8, 
+                        1, 
+                        110, 
+                        1, 
+                        6, 
+                        3, 
+                        1
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235)',
+                    borderColor: 'rgba(54, 162, 235)',
+                    borderWidth: 1
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Expected Lifetime of Satellites (2018-2023)',
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Expected Lifetime (Years)' // X-axis label
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Satellites' // Y-axis label
+                            }
+                        }
+                    }
+                }
+            });
+
+        // Bar Chart for Purpose of Satellites
+        const purposeCtx = document.getElementById('myPurposeChart').getContext('2d');
+        const myPurposeChart = new Chart(purposeCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Communications', 
+                    'Earth Observation', 
+                    'Technology Development', 
+                    'Technology Demonstration', 
+                    'Navigation', 
+                    'Space Sciences', 
+                    'Earth Sciences', 
+                    'Surveillance', 
+                    'Unknown'
+                ],
+                datasets: [{
+                    label: 'Satellites Launched (2018-2023)',
+                    data: [
+                        4937, 
+                        817, 
+                        255, 
+                        57, 
+                        50, 
+                        46, 
+                        22, 
+                        20, 
+                        10
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(153, 102, 255)',
+                        'rgba(255, 159, 64)',
+                        'rgba(201, 203, 207)',
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(153, 102, 255)',
+                        'rgba(255, 159, 64)',
+                        'rgba(201, 203, 207)',
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Purpose of Satellites Launched (2018-2023)',
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart for Class of Orbit
+        const orbitCtx = document.getElementById('myOrbitChart').getContext('2d');
+        const myOrbitChart = new Chart(orbitCtx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Low Earth Orbit', 
+                    'Geostationary Orbit', 
+                    'Middle Earth Orbit'
+                ],
+                datasets: [{
+                    label: 'Satellites by Class of Orbit',
+                    data: [
+                        6037, 
+                        139, 
+                        53
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192)',
+                        'rgba(255, 99, 132)',
+                        'rgba(255, 206, 86)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192)',
+                        'rgba(255, 99, 132)',
+                        'rgba(255, 206, 86)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Class of Orbit for Satellites (2018-2023)',
+                }
+            }
+        });
+</script>
+</body>
+</html>
